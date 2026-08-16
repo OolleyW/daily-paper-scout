@@ -20,6 +20,11 @@
   "rows_per_journal": 30,
   "max_per_journal": 3,
   "batch_size": 12,
+  "ingest": {
+    "enabled": true,
+    "cwd": "E:\\path\\to\\your\\llm-wiki",
+    "source_dir": "E:\\path\\to\\your\\raw\\reports_literature"
+  },
   "journals": [
     {"name": "Journal of Structural Engineering", "issn": "0733-9445", "if": 3.7},
     {"name": "Journal of Composites for Construction", "issn": "1090-0268", "if": 3.5},

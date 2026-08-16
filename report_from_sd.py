@@ -304,23 +304,29 @@ def main():
     with open(md_path, "w", encoding="utf-8") as f:
         f.write(build_markdown_sd(selected, today, warn, summary, comparison))
 
-    # 调用 Claude Code 批量摄入（继承 E:\project_wiki\CLAUDE.md 的 ingest 规范）
-    import subprocess
-    ingest_prompt = ("批量 ingest E:/project_wiki/raw/reports_literature，无需逐步确认："
-                     "把报告中每篇论文的信息、摘要、引言逐篇摄入知识库"
-                     "（每篇建 source 页、更新 concept/entity 页）；"
-                     "完成后执行 lint 健康检查；最后更新 index.md 和 log.md。完成后简要汇报。")
-    try:
-        r = subprocess.run(
-            f'claude -p "{ingest_prompt}" --dangerously-skip-permissions',
-            cwd="E:/project_wiki", shell=True, capture_output=True, text=True, timeout=3600,
-        )
-        print(f"  claude ingest: exit={r.returncode}")
-        if r.stdout:
-            print("  [claude 输出末尾]")
-            print(r.stdout[-800:])
-    except Exception as e:
-        print(f"  claude ingest 失败: {e}")
+    # 摄入知识库（可配置/可跳过）：默认调用 Claude Code 批量 ingest
+    ingest_cfg = cfg.get("ingest", {})
+    if ingest_cfg.get("enabled", True):
+        import subprocess
+        src_dir = ingest_cfg.get("source_dir", out_dir)
+        cwd = ingest_cfg.get("cwd", ".")
+        ingest_prompt = ("批量 ingest {src}，无需逐步确认："
+                         "把报告中每篇论文的信息、摘要、引言逐篇摄入知识库"
+                         "（每篇建 source 页、更新 concept/entity 页）；"
+                         "完成后执行 lint 健康检查；最后更新 index.md 和 log.md。完成后简要汇报。").format(src=src_dir)
+        try:
+            r = subprocess.run(
+                f'claude -p "{ingest_prompt}" --dangerously-skip-permissions',
+                cwd=cwd, shell=True, capture_output=True, text=True, timeout=3600,
+            )
+            print(f"  claude ingest: exit={r.returncode}")
+            if r.stdout:
+                print("  [claude 输出末尾]")
+                print(r.stdout[-800:])
+        except Exception as e:
+            print(f"  claude ingest 失败: {e}")
+    else:
+        print("  ingest 已禁用（config.ingest.enabled=false），跳过知识库摄入")
 
     for p in selected:
         reported.add(p["doi"])

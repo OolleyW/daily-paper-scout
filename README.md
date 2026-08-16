@@ -33,6 +33,13 @@ daily_paper_scout/
 - **Claude Code**（`claude` 命令，用于 ingest；需配置为你的 LLM）
 - 可选：**Server酱** SendKey（微信通知）、**DeepSeek** API key（报告归纳）
 
+## 前置要求：LLM Wiki 知识库（数据库）
+
+报告生成后的「摄入」步骤依赖一套 **LLM Wiki 知识库**（`CLAUDE.md` + `wiki/` 目录 + Claude Code 命令）。
+
+- **使用前，请先按此文档建立数据库**：https://hcn9zwu8a0fz.feishu.cn/wiki/AM3ewXySViopPdkE8Gic90BDnRb
+- 若暂不摄入（只想抓论文 → 双语报告 → 微信提醒），把 `config.json` 的 `ingest.enabled` 设为 `false` 即可跳过。
+
 ## 安装
 
 ```powershell
@@ -54,6 +61,9 @@ daily_paper_scout/
 | `output_dir` | 报告输出目录（如 `E:\...\raw\reports_literature`） |
 | `max_papers` | 每日最多篇数（默认 20） |
 | `batch_size` | 每批抓取篇数（默认 12，两批合计 ≈ 20，避开限流） |
+| `ingest.enabled` | 是否调用 Claude Code 摄入知识库（false 则跳过，仅出报告） |
+| `ingest.cwd` | LLM Wiki 知识库根目录（含 CLAUDE.md，ingest 时作为工作目录） |
+| `ingest.source_dir` | 报告源目录（ingest 读取报告的位置） |
 | `journals` | Q1 期刊白名单（name / issn / if 影响因子） |
 
 ## 手动运行

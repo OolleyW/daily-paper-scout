@@ -1,0 +1,51 @@
+{
+  "scopus": {
+    "apikey": "YOUR_SCOPUS_API_KEY",
+    "fallback_apikeys": [],
+    "insttoken": "",
+    "base_url": "https://api.elsevier.com"
+  },
+  "serverchan": {
+    "sendkey": "YOUR_SERVERCHAN_SENDKEY"
+  },
+  "llm": {
+    "provider": "deepseek",
+    "api_key": "YOUR_DEEPSEEK_API_KEY",
+    "base_url": "https://api.deepseek.com",
+    "model": "deepseek-chat",
+    "enabled": true
+  },
+  "output_dir": "E:\\path\\to\\your\\reports",
+  "max_papers": 20,
+  "rows_per_journal": 30,
+  "max_per_journal": 3,
+  "batch_size": 12,
+  "journals": [
+    {"name": "Journal of Structural Engineering", "issn": "0733-9445", "if": 3.7},
+    {"name": "Journal of Composites for Construction", "issn": "1090-0268", "if": 3.5},
+    {"name": "Journal of Bridge Engineering", "issn": "1084-0702", "if": 3.0},
+    {"name": "Journal of Engineering Mechanics", "issn": "0733-9399", "if": 3.1},
+    {"name": "Earthquake Engineering and Structural Dynamics", "issn": "0098-8847", "if": 3.5},
+    {"name": "Steel and Composite Structures", "issn": "1229-9367", "if": 4.0},
+    {"name": "Advances in Structural Engineering", "issn": "1369-4332", "if": 1.9},
+    {"name": "Composite Structures", "issn": "0263-8223", "if": 6.3},
+    {"name": "Engineering Structures", "issn": "0141-0296", "if": 5.6},
+    {"name": "Thin-Walled Structures", "issn": "0263-8231", "if": 6.4},
+    {"name": "Journal of Constructional Steel Research", "issn": "0143-974X", "if": 4.5},
+    {"name": "Construction and Building Materials", "issn": "0950-0618", "if": 7.4},
+    {"name": "Cement and Concrete Composites", "issn": "0958-9465", "if": 9.9},
+    {"name": "Journal of Computing in Civil Engineering", "issn": "0887-3801", "if": 4.5},
+    {"name": "Journal of Construction Engineering and Management", "issn": "0733-9364", "if": 4.0},
+    {"name": "Journal of Management in Engineering", "issn": "0742-597X", "if": 5.0},
+    {"name": "Automation in Construction", "issn": "0926-5805", "if": 9.6},
+    {"name": "Advanced Engineering Informatics", "issn": "1474-0346", "if": 8.0},
+    {"name": "Engineering Applications of Artificial Intelligence", "issn": "0952-1976", "if": 7.5},
+    {"name": "Structural Health Monitoring", "issn": "1475-9217", "if": 5.5},
+    {"name": "Smart Materials and Structures", "issn": "0964-1726", "if": 4.0},
+    {"name": "Materials and Structures", "issn": "1359-5997", "if": 3.0},
+    {"name": "Structural Safety", "issn": "0167-4730", "if": 5.0},
+    {"name": "Bulletin of Earthquake Engineering", "issn": "1570-761X", "if": 3.5},
+    {"name": "Structure and Infrastructure Engineering", "issn": "1573-2479", "if": 3.0},
+    {"name": "Journal of Earthquake Engineering", "issn": "1363-2469", "if": 2.5}
+  ]
+}
